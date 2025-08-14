@@ -1,0 +1,26 @@
+{
+    "name": "app/sendcloud-bundle",
+    "description": "Symfony bundle for interacting with Sendcloud API",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "require": {
+        "php": "^8.3",
+        "symfony/http-client": "^7.0",
+        "symfony/validator": "^7.0",
+        "symfony/dependency-injection": "^7.0",
+        "symfony/config": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sendcloud\\Bundle\\": "src/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.5"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Sendcloud\\Bundle\\Tests\\": "tests/"
+        }
+    }
+}
