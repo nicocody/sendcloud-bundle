@@ -3,13 +3,14 @@
 namespace Sendcloud\Bundle\Tests\DTO;
 
 use PHPUnit\Framework\TestCase;
+use Sendcloud\Bundle\DTO\Address;
 use Sendcloud\Bundle\DTO\Shipment;
 
 class ShipmentTest extends TestCase
 {
     public function testToArrayReturnsCorrectStructure(): void
     {
-        $shipment = new Shipment(
+        $to = new Address(
             'John Doe',
             'Acme Inc',
             'Main Street',
@@ -18,20 +19,26 @@ class ShipmentTest extends TestCase
             'Metropolis',
             'NL',
             'john@example.com',
-            '+31612345678',
-            1.5
+            '+31612345678'
         );
 
+        $from = new Address(
+            'Jane Sender',
+            'Widgets',
+            'Elm Street',
+            '13',
+            '54321',
+            'Gotham',
+            'US',
+            'jane@example.com',
+            null
+        );
+
+        $shipment = new Shipment($to, $from, 1.5);
+
         $expected = [
-            'name' => 'John Doe',
-            'company_name' => 'Acme Inc',
-            'address' => 'Main Street',
-            'house_number' => '42',
-            'postal_code' => '12345',
-            'city' => 'Metropolis',
-            'country' => 'NL',
-            'email' => 'john@example.com',
-            'telephone' => '+31612345678',
+            'to_address' => $to->toArray(),
+            'from_address' => $from->toArray(),
             'weight' => 1.5,
         ];
 

@@ -3,6 +3,7 @@
 namespace Sendcloud\Bundle\Tests\Service;
 
 use PHPUnit\Framework\TestCase;
+use Sendcloud\Bundle\DTO\Address;
 use Sendcloud\Bundle\DTO\Shipment;
 use Sendcloud\Bundle\Exception\SendcloudApiException;
 use Sendcloud\Bundle\Service\ShipmentService;
@@ -21,7 +22,7 @@ class ShipmentServiceTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->shipment = new Shipment(
+        $to = new Address(
             'John Doe',
             null,
             'Main Street',
@@ -31,8 +32,19 @@ class ShipmentServiceTest extends TestCase
             'NL',
             null,
             null,
-            1.0
         );
+        $from = new Address(
+            'Jane Sender',
+            null,
+            'Elm Street',
+            '13',
+            '54321',
+            'Gotham',
+            'US',
+            null,
+            null,
+        );
+        $this->shipment = new Shipment($to, $from, 1.0);
     }
 
     public function testAnnounceShipmentReturnsResponseArray(): void

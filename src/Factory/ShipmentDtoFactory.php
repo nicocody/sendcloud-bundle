@@ -10,17 +10,9 @@ class ShipmentDtoFactory
     public function createFromEntity(ShipmentEntityInterface $entity): Shipment
     {
         return new Shipment(
-            $entity->getName(),
-            $entity->getCompanyName(),
-            $entity->getStreet(),
-            $entity->getHouseNumber(),
-            $entity->getPostalCode(),
-            $entity->getCity(),
-            $entity->getCountry(),
-            $entity->getEmail(),
-            $entity->getPhone(),
-            $entity->getWeight()
+            $entity->getToAddress(),
+            $entity->getFromAddress(),
+            $entity->getWeight(),
         );
     }
 }
-
