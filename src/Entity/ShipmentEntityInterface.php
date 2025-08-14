@@ -2,17 +2,11 @@
 
 namespace Sendcloud\Bundle\Entity;
 
+use Sendcloud\Bundle\DTO\Address;
+
 interface ShipmentEntityInterface
 {
-    public function getName(): string;
-    public function getCompanyName(): ?string;
-    public function getStreet(): string;
-    public function getHouseNumber(): string;
-    public function getPostalCode(): string;
-    public function getCity(): string;
-    public function getCountry(): string;
-    public function getEmail(): ?string;
-    public function getPhone(): ?string;
+    public function getToAddress(): Address;
+    public function getFromAddress(): Address;
     public function getWeight(): float;
 }
-
