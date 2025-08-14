@@ -6,8 +6,11 @@ services:
             string $baseUrl: '%sendcloud.base_url%'
             string $apiKey: '%sendcloud.api_key%'
             string $apiSecret: '%sendcloud.api_secret%'
-            'Psr\\Log\\LoggerInterface $logger': '@?monolog.logger.%sendcloud.logger_channel%'
 
     Sendcloud\Bundle\:
         resource: '../../*'
         exclude: '../../{DependencyInjection,Entity,Resources,Tests}'
+
+    Sendcloud\Bundle\Service\ShipmentService:
+        bind:
+            $logger: '@?monolog.logger.%sendcloud.logger_channel%'
