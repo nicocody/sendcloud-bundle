@@ -1,0 +1,12 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        bind:
+            string $baseUrl: '%sendcloud.base_url%'
+            string $apiKey: '%sendcloud.api_key%'
+            string $apiSecret: '%sendcloud.api_secret%'
+
+    Sendcloud\Bundle\:
+        resource: '../../*'
+        exclude: '../../{DependencyInjection,Entity,Resources,Tests}'
