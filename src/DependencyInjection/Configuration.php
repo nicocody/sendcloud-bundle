@@ -16,6 +16,7 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('base_url')->defaultValue('https://panel.sendcloud.sc/api/v3')->end()
                 ->scalarNode('api_key')->isRequired()->cannotBeEmpty()->end()
                 ->scalarNode('api_secret')->isRequired()->cannotBeEmpty()->end()
+                ->scalarNode('logger_channel')->defaultValue('sendcloud')->end()
             ->end();
 
         return $treeBuilder;

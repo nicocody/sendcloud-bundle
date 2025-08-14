@@ -17,6 +17,7 @@ class SendcloudExtension extends Extension
         $container->setParameter('sendcloud.base_url', $config['base_url']);
         $container->setParameter('sendcloud.api_key', $config['api_key']);
         $container->setParameter('sendcloud.api_secret', $config['api_secret']);
+        $container->setParameter('sendcloud.logger_channel', $config['logger_channel']);
 
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yaml');
