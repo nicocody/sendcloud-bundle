@@ -28,7 +28,7 @@ class Shipment
     #[Assert\Length(min: 2, max: 2)]
     public string $country;
 
-    #[Assert\Email(allowNull: true)]
+    #[Assert\Email]
     public ?string $email;
 
     #[Assert\NotBlank(allowNull: true)]
