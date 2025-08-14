@@ -6,7 +6,7 @@ services:
             string $baseUrl: '%sendcloud.base_url%'
             string $apiKey: '%sendcloud.api_key%'
             string $apiSecret: '%sendcloud.api_secret%'
-            '?Psr\\Log\\LoggerInterface $logger': '@?monolog.logger.%sendcloud.logger_channel%'
+            'Psr\\Log\\LoggerInterface $logger': '@?monolog.logger.%sendcloud.logger_channel%'
 
     Sendcloud\Bundle\:
         resource: '../../*'
