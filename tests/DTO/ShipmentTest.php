@@ -5,6 +5,7 @@ namespace Sendcloud\Bundle\Tests\DTO;
 use PHPUnit\Framework\TestCase;
 use Sendcloud\Bundle\DTO\Address;
 use Sendcloud\Bundle\DTO\Shipment;
+use Sendcloud\Bundle\DTO\Parcel;
 
 class ShipmentTest extends TestCase
 {
@@ -34,12 +35,16 @@ class ShipmentTest extends TestCase
             null
         );
 
-        $shipment = new Shipment($to, $from, 1.5);
+        $parcel = new Parcel(1.5);
+        $shipment = new Shipment($to, $from, [$parcel]);
 
         $expected = [
             'to_address' => $to->toArray(),
             'from_address' => $from->toArray(),
-            'weight' => 1.5,
+            'parcels' => [
+                ['weight' => 1.5],
+            ],
+            'ship_with' => ['type' => 'sendcloud:letter'],
         ];
 
         self::assertSame($expected, $shipment->toArray());

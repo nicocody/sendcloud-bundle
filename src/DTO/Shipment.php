@@ -12,14 +12,27 @@ class Shipment
     #[Assert\Valid]
     public Address $fromAddress;
 
-    #[Assert\Positive]
-    public float $weight;
+    /**
+     * @var Parcel[]
+     */
+    #[Assert\Valid]
+    public array $parcels;
 
-    public function __construct(Address $toAddress, Address $fromAddress, float $weight)
+    /**
+     * @var array{type:string}
+     */
+    public array $shipWith;
+
+    /**
+     * @param Parcel[] $parcels
+     * @param array{type:string} $shipWith
+     */
+    public function __construct(Address $toAddress, Address $fromAddress, array $parcels, array $shipWith = ['type' => 'sendcloud:letter'])
     {
         $this->toAddress = $toAddress;
         $this->fromAddress = $fromAddress;
-        $this->weight = $weight;
+        $this->parcels = $parcels;
+        $this->shipWith = $shipWith;
     }
 
     public function toArray(): array
@@ -27,7 +40,8 @@ class Shipment
         return [
             'to_address' => $this->toAddress->toArray(),
             'from_address' => $this->fromAddress->toArray(),
-            'weight' => $this->weight,
+            'parcels' => array_map(static fn(Parcel $parcel) => $parcel->toArray(), $this->parcels),
+            'ship_with' => $this->shipWith,
         ];
     }
 }
