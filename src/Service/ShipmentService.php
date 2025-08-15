@@ -32,17 +32,30 @@ class ShipmentService
             throw new ValidationFailedException($shipment, $errors);
         }
 
+        $requestData = ['shipment' => $shipment->toArray()];
+
+        if ($this->logger) {
+            $this->logger->debug('Sendcloud API request', ['request' => $requestData]);
+        }
+
         try {
             $response = $this->client->request('POST', rtrim($this->baseUrl, '/').'/shipments/announce', [
                 'auth_basic' => [$this->apiKey, $this->apiSecret],
-                'json' => $shipment->toArray(),
+                'json' => $requestData,
             ]);
 
-            return $response->toArray();
+            $result = $response->toArray();
+
+            if ($this->logger) {
+                $this->logger->debug('Sendcloud API response', ['response' => $result]);
+            }
+
+            return $result;
         } catch (HttpExceptionInterface $e) {
             $content = $e->getResponse()->getContent(false);
 
             if ($this->logger) {
+                $this->logger->debug('Sendcloud API response', ['response' => $content]);
                 $this->logger->error('Sendcloud API error: '.$content, ['exception' => $e]);
             }
 
