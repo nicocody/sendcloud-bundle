@@ -58,7 +58,7 @@ class Address
 
     public function toArray(): array
     {
-        return [
+        return array_filter([
             'name' => $this->name,
             'company_name' => $this->companyName,
             'address_line_1' => $this->address,
@@ -68,6 +68,6 @@ class Address
             'country_code' => $this->country,
             'email' => $this->email,
             'phone_number' => $this->phone,
-        ];
+        ], static fn ($value) => null !== $value);
     }
 }

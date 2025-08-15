@@ -63,7 +63,7 @@ class ShipmentServiceTest extends TestCase
                 'https://api.example.com/shipments/announce',
                 [
                     'auth_basic' => ['key', 'secret'],
-                    'json' => ['shipment' => $this->shipment->toArray()],
+                    'json' => $this->shipment->toArray(),
                 ]
             )->willReturn($response);
         $response->method('toArray')->willReturn(['status' => 'ok']);

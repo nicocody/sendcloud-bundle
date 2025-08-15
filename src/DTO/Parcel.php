@@ -16,8 +16,8 @@ class Parcel
 
     public function toArray(): array
     {
-        return [
+        return array_filter([
             'weight' => $this->weight,
-        ];
+        ], static fn ($value) => null !== $value);
     }
 }
