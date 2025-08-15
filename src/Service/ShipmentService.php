@@ -35,7 +35,7 @@ class ShipmentService
         try {
             $response = $this->client->request('POST', rtrim($this->baseUrl, '/').'/shipments/announce', [
                 'auth_basic' => [$this->apiKey, $this->apiSecret],
-                'json' => ['shipment' => $shipment->toArray()],
+                'json' => $shipment->toArray(),
             ]);
 
             return $response->toArray();

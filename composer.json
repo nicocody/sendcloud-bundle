@@ -3,6 +3,11 @@
     "description": "Symfony bundle for interacting with Sendcloud API",
     "type": "symfony-bundle",
     "license": "MIT",
+    "config": {
+        "platform": {
+            "php": "8.3.3"
+        }
+    },
     "require": {
         "php": "^8.3",
         "symfony/http-client": "^7.0",
