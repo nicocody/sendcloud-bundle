@@ -32,7 +32,7 @@ class ShipmentService
             throw new ValidationFailedException($shipment, $errors);
         }
 
-        $requestData = ['shipment' => $shipment->toArray()];
+        $requestData = $shipment->toArray();
 
         if ($this->logger) {
             $this->logger->debug('Sendcloud API request', ['request' => $requestData]);

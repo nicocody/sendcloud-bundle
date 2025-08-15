@@ -61,13 +61,13 @@ class Address
         return [
             'name' => $this->name,
             'company_name' => $this->companyName,
-            'address' => $this->address,
+            'address_line_1' => $this->address,
             'house_number' => $this->houseNumber,
             'postal_code' => $this->postalCode,
             'city' => $this->city,
-            'country' => $this->country,
+            'country_code' => $this->country,
             'email' => $this->email,
-            'telephone' => $this->phone,
+            'phone_number' => $this->phone,
         ];
     }
 }
