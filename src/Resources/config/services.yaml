@@ -13,4 +13,6 @@ services:
 
     Sendcloud\Bundle\Service\ShipmentService:
         bind:
-            $logger: '@?monolog.logger.%sendcloud.logger_channel%'
+            $logger: '@=container.has("monolog.logger." ~ parameter("sendcloud.logger_channel"))
+                                    ? service("monolog.logger." ~ parameter("sendcloud.logger_channel"))
+                                    : null'
