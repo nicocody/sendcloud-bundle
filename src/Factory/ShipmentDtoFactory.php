@@ -12,7 +12,8 @@ class ShipmentDtoFactory
         return new Shipment(
             $entity->getToAddress(),
             $entity->getFromAddress(),
-            $entity->getWeight(),
+            $entity->getParcels(),
+            $entity->getShipWith(),
         );
     }
 }

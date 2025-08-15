@@ -5,6 +5,7 @@ namespace Sendcloud\Bundle\Tests\Service;
 use PHPUnit\Framework\TestCase;
 use Sendcloud\Bundle\DTO\Address;
 use Sendcloud\Bundle\DTO\Shipment;
+use Sendcloud\Bundle\DTO\Parcel;
 use Sendcloud\Bundle\Exception\SendcloudApiException;
 use Sendcloud\Bundle\Service\ShipmentService;
 use Symfony\Component\Validator\ConstraintViolation;
@@ -44,7 +45,8 @@ class ShipmentServiceTest extends TestCase
             null,
             null,
         );
-        $this->shipment = new Shipment($to, $from, 1.0);
+        $parcel = new Parcel(1.0);
+        $this->shipment = new Shipment($to, $from, [$parcel]);
     }
 
     public function testAnnounceShipmentReturnsResponseArray(): void
