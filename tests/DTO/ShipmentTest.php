@@ -42,7 +42,7 @@ class ShipmentTest extends TestCase
             'to_address' => $to->toArray(),
             'from_address' => $from->toArray(),
             'parcels' => [
-                ['weight' => 1.5],
+                ['weight' => ['value' => 1.5, 'unit' => 'kg']],
             ],
             'ship_with' => ['type' => 'sendcloud:letter'],
         ];
