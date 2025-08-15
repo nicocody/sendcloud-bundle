@@ -30,7 +30,8 @@ class ShipmentDtoFactoryTest extends TestCase
         self::assertInstanceOf(Shipment::class, $shipment);
         self::assertSame('Jane Doe', $shipment->toAddress->name);
         self::assertSame('Sender', $shipment->fromAddress->name);
-        self::assertSame(2.0, $shipment->parcels[0]->weight);
+        self::assertSame(2.0, $shipment->parcels[0]->weight['value']);
+        self::assertSame('kg', $shipment->parcels[0]->weight['unit']);
         self::assertSame('sendcloud:letter', $shipment->shipWith['type']);
     }
 }

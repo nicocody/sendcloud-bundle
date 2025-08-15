@@ -6,12 +6,21 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class Parcel
 {
-    #[Assert\Positive]
-    public float $weight;
+    /**
+     * @var array{value: float, unit: string}
+     */
+    #[Assert\Collection(fields: [
+        'value' => [new Assert\Required(), new Assert\Positive()],
+        'unit' => [new Assert\Required(), new Assert\NotBlank()],
+    ])]
+    public array $weight;
 
-    public function __construct(float $weight)
+    public function __construct(float $value, string $unit = 'kg')
     {
-        $this->weight = $weight;
+        $this->weight = [
+            'value' => $value,
+            'unit' => $unit,
+        ];
     }
 
     public function toArray(): array
