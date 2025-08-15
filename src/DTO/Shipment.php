@@ -37,11 +37,11 @@ class Shipment
 
     public function toArray(): array
     {
-        return [
+        return array_filter([
             'to_address' => $this->toAddress->toArray(),
             'from_address' => $this->fromAddress->toArray(),
             'parcels' => array_map(static fn(Parcel $parcel) => $parcel->toArray(), $this->parcels),
             'ship_with' => $this->shipWith,
-        ];
+        ], static fn ($value) => null !== $value);
     }
 }
